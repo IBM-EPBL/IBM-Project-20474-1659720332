@@ -1,0 +1,101 @@
+<html>
+<head>
+</head>
+<body>
+<div class="banner">
+  <div id="form-container">
+        
+        <form method="post">
+ 
+          <label for="fname">First Name</label>
+             <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+          <label for="lname">Last Name</label>
+             <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+          <label for="country">Country</label>
+             <select id="country" name="country">
+              <option value="India">India</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+             </select>
+
+          <label for="subject">Subject</label>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height: 88px;"></textarea>
+
+             <input type="submit" value="Submit" onclick="saveFile()">
+         </form>
+      <link rel="stylesheet" href="fix.css">
+  </div>
+</div>
+<style>
+.banner{
+margin: 0;
+width:100%;
+align:center;
+}
+#form-container {
+    
+    left:900;
+    top:20;										;
+    position:absolute;
+    width:350px;
+    margin: 30px auto 0 auto;
+ }
+</style>
+
+
+<header class="banner">
+<img src="ground.jpeg" height="500px" width="100%">
+</header>
+<div style="position:absolute;left:50;top:50;">
+<img src="profile.png" height="150" width="200">
+</div>
+
+<p>
+</p><h3>
+We welcome you to our page!! myself harsha .I am harsha my Computer Science and Engineering Degree in VelTech HighTech.  This is a webpage created using html and css.   
+</h3>
+<p></p>
+
+
+
+</body>
+
+<script>
+    let saveFile = () => {
+    	
+        // Get the data from each element on the form.
+    	const Firstname = document.getElementById('fname');
+        const Lastname = document.getElementById('lname');
+        const Country = document.getElementById('country');
+        const Subject = document.getElementById('subject');
+        
+        
+        // This variable stores all the data.
+        let data = 
+            '\r First Name: ' + Firstname.value + ' \r\n ' + 
+            'Last Name: ' +Lastname.value + ' \r\n ' + 
+            'Country: ' + Country.value + ' \r\n ' + 
+            'Subject: ' + Subject.value;
+        
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([data], { type: 'text/plain' });
+        const sFileName = 'data.txt';	   // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click(); 
+    }
+</script>
+</html>
